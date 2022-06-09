@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
-
+//Pages
+import Home from "./pages/Home";
+//
+import GlobalStyles from "./components/GlobalStyles";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { blue, red } from "@material-ui/core/colors";
+//router
+import { Switch, Route } from "react-router-dom";
+//motion
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* <Switch> */}
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Route path={("/moviedetails/:id", "/tvdetails/:id", "/")}>
+          <Home />
+        </Route>
+      </ThemeProvider>
+      {/* </Switch> */}
+    </>
   );
 }
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: red[900],
+    },
+    secondary: {
+      main: blue[50],
+    },
+  },
+});
 
 export default App;
